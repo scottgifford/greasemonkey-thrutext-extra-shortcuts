@@ -13,11 +13,11 @@
     const helpScreenshotImage = document.createElement('img');
     // For debugging
     window.helpScreenshotImage = helpScreenshotImage;
-    // TODO: Replace with GitHub-hosted URL
-    helpScreenshotImage.src='';
+    helpScreenshotImage.src='https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png';
     helpScreenshotImage.style.display = 'none';
     helpScreenshotImage.style.position = 'fixed';
     helpScreenshotImage.style.zIndex = 100;
+    helpScreenshotImage.style.height = '80%';
     helpScreenshotImage.style.top = '10%';
     helpScreenshotImage.style.left = '10%';
 
