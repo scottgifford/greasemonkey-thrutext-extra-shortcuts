@@ -201,4 +201,20 @@
 
     // Main event handler for keyboard shortcuts
     document.addEventListener('keyup', doc_keyUp, true);
+
+    // Add our swag
+    const addSwag = () => {
+        const withExtraKeys = document.createElement('span');
+        withExtraKeys.innerText = "+More Keyboard Shortcuts";
+        const logoContainer = document.querySelector('.nav__left');
+        if (logoContainer) {
+            // Hack to avoid our swag appearing below the logo instead of next to it
+            // Breaks the vertical centering but we'll live with that.
+            logoContainer.querySelector('.nav__logo-container').style.display = 'inline';
+            logoContainer.appendChild(withExtraKeys);
+        } else {
+            window.setTimeout(addSwag, 250);
+        }
+    };
+    addSwag();
 })();
