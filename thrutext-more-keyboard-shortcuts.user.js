@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         ThruText Keyboard
 // @namespace    http://suspectclass.com/
+// @resource helpScreenshot https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png
 // @version      0.1
 // @description  Make ThruText Faster!
 // @author       Scott Gifford <sgifford@suspectclass.com>
 // @match        *://*.textforvictory2020.com/*
-// @grant        none
+// @grant       GM_getResourceURL
 // ==/UserScript==
 
 (function() {
@@ -13,7 +14,7 @@
     const helpScreenshotImage = document.createElement('img');
     // For debugging
     window.helpScreenshotImage = helpScreenshotImage;
-    helpScreenshotImage.src='https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png';
+    helpScreenshotImage.src = GM_getResourceURL("helpScreenshot");
     helpScreenshotImage.style.display = 'none';
     helpScreenshotImage.style.position = 'fixed';
     helpScreenshotImage.style.zIndex = 100;
