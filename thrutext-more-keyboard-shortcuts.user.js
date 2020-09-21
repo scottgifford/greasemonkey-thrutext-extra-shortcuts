@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         ThruText Keyboard
+// @name         ThruText More Keyboard Shortcuts
 // @namespace    http://suspectclass.com/
 // @resource helpScreenshot https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png
 // @version      0.1
-// @description  Make ThruText Faster!
+// @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
 // @match        *://*.textforvictory2020.com/*
 // @grant       GM_getResourceURL
