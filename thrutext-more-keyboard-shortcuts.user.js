@@ -76,6 +76,7 @@
                           const t = r.querySelector('.v2-reply__title');
                           t.innerText = `(${i}) ${t.innerText}`;
                     });
+                    document.querySelector('#message-composer__input').focus();
                     break;
                 case "KeyI":
                     console.log("Information Tab Activated");
