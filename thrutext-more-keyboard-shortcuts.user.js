@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         ThruText More Keyboard Shortcuts
 // @namespace    http://suspectclass.com/
+// @version      0.2
 // @resource helpScreenshot https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png
-// @version      0.1
 // @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
 // @match        *://*.textforvictory2020.com/*
@@ -10,9 +10,11 @@
 // ==/UserScript==
 
 (function() {
+    'use strict';
+
+    console.log(`Starting ${GM_info.script.name} version ${GM_info.script.version}...`);
 
     const helpScreenshotImage = document.createElement('img');
-    // For debugging
     window.helpScreenshotImage = helpScreenshotImage;
     helpScreenshotImage.src = GM_getResourceURL("helpScreenshot");
     helpScreenshotImage.style.display = 'none';
@@ -45,11 +47,10 @@
     };
 
     let inSurveyQuestion = undefined;
-    'use strict';
-    console.log("Started ThruText Keyboard Tampermonkey!");
-    function doc_keyUp(e) {
-        console.log("Key Up Event:", e);
+    function doc_keyDown(e) {
+        console.log("Key Down Event:", e);
         if (e.ctrlKey) {
+            let preventDefault = true;
             switch(e.code) {
                 // Global Keys
                 case "KeyH":
@@ -179,28 +180,37 @@
                         }
                     }
                     break;
-            }
-        } else {
-            // Handle keys when CTRL is not pressed
-            switch(e.code) {
-                case "ControlLeft":
-                case "ControlRight":
-                    console.log("Released CTRL-key, removing sub-menus");
-                    if (inSurveyQuestion) {
-                        console.log("Released CTRL-key, should un-decorate");
-                        inSurveyQuestion.querySelectorAll('.tt-kb-decorator').forEach((elt) => {
-                            // Mark as un-decorated so we can re-decorate if chosen again
-                            elt.parentNode.parentNode.alreadyDecorated = false;
-                            elt.remove();
-                        });
-                        inSurveyQuestion = undefined;
-                    }
+                default:
+                    preventDefault = false;
                     break;
+            }
+            if (preventDefault) {
+                e.preventDefault();
             }
         }
     }
 
-    // Main event handler for keyboard shortcuts
+    function doc_keyUp(e) {
+        console.log("Key Up Event:", e);
+        switch(e.code) {
+            case "ControlLeft":
+            case "ControlRight":
+                console.log("Released CTRL-key, removing sub-menus");
+                if (inSurveyQuestion) {
+                    console.log("Released CTRL-key, should un-decorate");
+                    inSurveyQuestion.querySelectorAll('.tt-kb-decorator').forEach((elt) => {
+                        // Mark as un-decorated so we can re-decorate if chosen again
+                        elt.parentNode.parentNode.alreadyDecorated = false;
+                        elt.remove();
+                    });
+                    inSurveyQuestion = undefined;
+                }
+                break;
+        }
+    }
+
+    // Main event handlers for keyboard shortcuts
+    document.addEventListener('keydown', doc_keyDown, true);
     document.addEventListener('keyup', doc_keyUp, true);
 
     // Add our swag
@@ -218,4 +228,7 @@
         }
     };
     addSwag();
+
+    console.log(`Successfully started ${GM_info.script.name} version ${GM_info.script.version}!`);
+
 })();
