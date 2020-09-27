@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ThruText More Keyboard Shortcuts
 // @namespace    http://suspectclass.com/
-// @version      0.2
+// @version      0.3
 // @resource helpScreenshot https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png
 // @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
@@ -146,6 +146,16 @@
                 case "Digit7":
                 case "Digit8":
                 case "Digit9":
+                case "Numpad0":
+                case "Numpad1":
+                case "Numpad2":
+                case "Numpad3":
+                case "Numpad4":
+                case "Numpad5":
+                case "Numpad6":
+                case "Numpad7":
+                case "Numpad8":
+                case "Numpad9":
                     {
                         let item = parseInt(e.key);
                         // 1-based numbering
