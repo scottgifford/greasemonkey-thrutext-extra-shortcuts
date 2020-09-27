@@ -115,14 +115,26 @@
                     break;
                 }
                 // Confirmation Dialog
-                case "KeyY":
-                    console.log("Yes Button in Dialog Activated");
-                    document.querySelector('.form__actions--primary-button').click();
+                case "KeyY": {
+                    const yesButton = document.querySelector('.form__actions--primary-button');
+                    if (yesButton) {
+                        console.log("Yes button in dialog activated");
+                        yesButton.click();
+                    } else {
+                        console.log("Yes Button in dialog not found");
+                    }
                     break;
-                case "KeyN":
-                    console.log("No Button in Dialog Activated");
-                    document.querySelector('.form__actions--cancel-button').click();
+                }
+                case "KeyN": {
+                    const noButton = document.querySelector('.form__actions--cancel-button');
+                    if (noButton) {
+                        console.log("No button in dialog activated");
+                        noButton.click();
+                    } else {
+                        console.log("No button in dialog not found");
+                    }
                     break;
+                }
                 // Numeric Items (for Survey, Replies, Info)
                 case "Digit0":
                 case "Digit1":
