@@ -198,7 +198,7 @@
                                 // Choose a survey question
                                 console.log(`Survey menu item: ${item}`);
                                 inSurveyQuestion = document.querySelectorAll(`.v2-surveys .v2-survey-question`)[item];
-                                inSurveyQuestion.scrollIntoViewIfNeeded();
+                                inSurveyQuestion.scrollIntoView(true);
                                 decorateItems('.v2-form__radio-option,.v2-form__checkbox-option,.v2-form__text-input', (opt,i) => {
                                     const newElt = document.createElement('span');
                                     newElt.classList = ['tt-kb-decorator'];
