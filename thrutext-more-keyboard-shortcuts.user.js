@@ -132,6 +132,13 @@
                     });
                     break;
                 }
+                case "Enter": {
+                    console.log("Focus and enter activated");
+                    const messageInput = document.querySelector('#message-composer__input');
+                    messageInput.focus();
+                    messageInput.form.querySelector('.button--primary').click();
+                    break;
+                }
                 case "KeyI":
                     console.log("Information Tab Activated");
                     document.querySelector('.v2-conversation-tools__header ul :nth-child(3)').click();
