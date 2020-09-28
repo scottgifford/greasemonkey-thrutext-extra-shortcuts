@@ -66,6 +66,11 @@
 
     // Survey question DOM element that is active, or undefined if none
     let inSurveyQuestion = undefined;
+
+    // For the Reply menu, the CSS selector to find the menu items to click on.
+    // Distinguishes between the main question block and the "My Replies" question block.
+    let menuElementSelector = undefined;
+
     function doc_keyDown(e) {
         console.log("Key Down Event:", e);
         if (e.ctrlKey) {
@@ -84,20 +89,49 @@
                 case "KeyS":
                     console.log("Survey Tab Activated");
                     document.querySelector('.v2-conversation-tools__header ul :nth-child(1)').click();
-                    decorateItems(`.v2-survey-question .v2-survey-question__title`, (a, i) => {
+                    menuElementSelector = '.v2-survey-question .v2-survey-question__title';
+                    decorateItems(menuElementSelector, (a, i) => {
                         a.innerText = `(${i}) ${a.innerText}`
                     });
                     inSurveyQuestion = undefined;
                     break;
-                case "KeyR":
-                    console.log("Responses Tab Activated");
-                    document.querySelector('.v2-conversation-tools__header ul :nth-child(2)').click();
-                    decorateItems('.v2-replies-list .v2-reply__single-row', (r,i) => {
-                          const t = r.querySelector('.v2-reply__title');
-                          t.innerText = `(${i}) ${t.innerText}`;
-                    });
+                case "KeyR": {
+                    let questionBlock;
+                    if (e.shiftKey) {
+                        questionBlock = 2;
+                    } else {
+                        questionBlock = 1;
+                    }
+
+                    console.log(`Responses tab activated, question block ${questionBlock}`);
+
+                    // Replies is second tab
+                    document.querySelector(`.v2-conversation-tools__header ul :nth-child(2)`).click();
+
                     document.querySelector('#message-composer__input').focus();
+
+                    // Undecorate any replies to get a clean slate
+                    unDecorateItems('.v2-replies-list .v2-reply__single-row', (r) => {
+                        const t = r.querySelector('.v2-reply__title');
+                        if (t.origText) {
+                            t.innerText = t.origText;
+                        }
+                    });
+
+                    const listHeaders = document.querySelectorAll('.v2-replies-list__header');
+                    if (listHeaders.length >= questionBlock) {
+                        listHeaders[questionBlock-1].scrollIntoView(true);
+                    }
+                    menuElementSelector = `.v2-replies-list:nth-of-type(${questionBlock}) .v2-reply__add`;
+                    decorateItems(`.v2-replies-list:nth-of-type(${questionBlock}) .v2-reply__single-row`, (r,i) => {
+                        const t = r.querySelector('.v2-reply__title');
+                        if (!t.origText) {
+                            t.origText = t.innerText;
+                        }
+                        t.innerText = `(${i}) ${t.innerText}`;
+                    });
                     break;
+                }
                 case "KeyI":
                     console.log("Information Tab Activated");
                     document.querySelector('.v2-conversation-tools__header ul :nth-child(3)').click();
@@ -209,8 +243,8 @@
                             }
                         } else if (document.querySelector('.v2-conversation-replies')) {
                             // Replies
-                            console.log(`Replies tab is visible, selecting item: ${item}`);
-                            document.querySelectorAll(`.v2-conversation-replies .v2-reply__single-row .v2-reply__add`)[item].click();
+                            console.log(`Replies tab is visible, selecting item ${item} with selector '${menuElementSelector}`);
+                            document.querySelectorAll(menuElementSelector)[item].click();
                         } else if (document.querySelector('.nav-dropdown-item--current-account')) {
                             // Profile/Account
                             console.log(`Profile/Account tab is visible, selecting item ${item}`);
