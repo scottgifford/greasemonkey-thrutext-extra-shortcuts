@@ -258,7 +258,7 @@
     // Add our swag
     const addSwag = () => {
         const withExtraKeys = document.createElement('span');
-        withExtraKeys.innerText = "+More Keyboard Shortcuts";
+        withExtraKeys.innerText = `+More Keyboard Shortcuts ${GM_info.script.version}`;
         const logoContainer = document.querySelector('.nav__left');
         if (logoContainer) {
             // Hack to avoid our swag appearing below the logo instead of next to it
