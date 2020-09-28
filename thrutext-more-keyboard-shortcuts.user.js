@@ -46,6 +46,25 @@
         });
     };
 
+    const unDecorateItems = (sel, callback, root) => {
+        if (!root) {
+            root = document;
+        }
+        console.log(`Undecorating items for ${sel} at root:`, root);
+        const elements = root.querySelectorAll(sel);
+        console.log(`Found ${elements.length} matching items`);
+        root.querySelectorAll(sel)
+            .forEach((elt, i) => {
+            if (elt.alreadyDecorated) {
+                console.log(`Undecorating element ${i}:`, elt);
+                // 1-based numbering
+                callback(elt, (i + 1)%10);
+                elt.alreadyDecorated = false;
+            }
+        });
+    };
+
+    // Survey question DOM element that is active, or undefined if none
     let inSurveyQuestion = undefined;
     function doc_keyDown(e) {
         console.log("Key Down Event:", e);
@@ -220,10 +239,11 @@
                 console.log("Released CTRL-key, removing sub-menus");
                 if (inSurveyQuestion) {
                     console.log("Released CTRL-key, should un-decorate");
-                    inSurveyQuestion.querySelectorAll('.tt-kb-decorator').forEach((elt) => {
-                        // Mark as un-decorated so we can re-decorate if chosen again
-                        elt.parentNode.parentNode.alreadyDecorated = false;
-                        elt.remove();
+                    unDecorateItems('.v2-form__radio-option,.v2-form__checkbox-option,.v2-form__text-input', (elt) => {
+                        const decoratorElt = elt.querySelector('.tt-kb-decorator');
+                        if (decoratorElt) {
+                            decoratorElt.remove();
+                        }
                     });
                     inSurveyQuestion = undefined;
                 }
