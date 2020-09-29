@@ -77,15 +77,17 @@
             let preventDefault = true;
             switch(e.code) {
                 // Global Keys
-                case "KeyH":
-                    if (helpScreenshotImage.style.display) {
-                        console.log("Help Screen Activated");
-                        helpScreenshotImage.style.display = '';
-                    } else {
-                        console.log("Help Screen De-Activated");
-                        helpScreenshotImage.style.display = 'none';
-                    }
+                case "KeyH": {
+                    console.log(`Showing help screen`);
+                    const helpImage = GM_getResourceURL("helpScreenshot");
+                    const w = window.open("", "greasemonkey-thrutext-extra-shortcuts-help");
+                    w.document.title = `Help for ${GM_info.script.name} version ${GM_info.script.version}`;
+
+                    const img = window.document.createElement('img');
+                    img.src = GM_getResourceURL("helpScreenshot");
+                    w.document.body.appendChild(img);
                     break;
+                }
                 case "KeyS":
                     console.log("Survey Tab Activated");
                     document.querySelector('.v2-conversation-tools__header ul :nth-child(1)').click();
