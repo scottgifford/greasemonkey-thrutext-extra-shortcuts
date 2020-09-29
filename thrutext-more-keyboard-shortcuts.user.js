@@ -15,18 +15,6 @@
 
     console.log(`Starting ${GM_info.script.name} version ${GM_info.script.version}...`);
 
-    const helpScreenshotImage = document.createElement('img');
-    window.helpScreenshotImage = helpScreenshotImage;
-    helpScreenshotImage.src = GM_getResourceURL("helpScreenshot");
-    helpScreenshotImage.style.display = 'none';
-    helpScreenshotImage.style.position = 'fixed';
-    helpScreenshotImage.style.zIndex = 100;
-    helpScreenshotImage.style.height = '80%';
-    helpScreenshotImage.style.top = '10%';
-    helpScreenshotImage.style.left = '10%';
-
-    document.body.appendChild(helpScreenshotImage);
-
     const decorateItems = (sel, callback, root) => {
         if (!root) {
             root = document;
@@ -85,7 +73,7 @@
                     w.document.title = `Help for ${GM_info.script.name} version ${GM_info.script.version}`;
 
                     const img = window.document.createElement('img');
-                    img.src = GM_getResourceURL("helpScreenshot");
+                    img.src = helpImage;
                     w.document.body.appendChild(img);
                     break;
                 }
