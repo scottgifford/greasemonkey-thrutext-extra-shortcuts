@@ -7,7 +7,8 @@ Greasemonkey script for extra keyboard shortcuts in ThruText.
    * Firefox - [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
 2. Now visit the URL for this script: https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/thrutext-more-keyboard-shortcuts.user.js
 3. Press the "Install" button
-   * If the script is already installed and you'd like to update, press the "Reinstall" button.
+   * If the script is already installed and you'd like to update, press the "Update" button.
+   * If the script is already installed and you'd like to re-install the same version, press the "Reinstall" button.
 
 # Help
 ![Help Screenshot](https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png)
