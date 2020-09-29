@@ -5,8 +5,8 @@
         margin: 25px 0;
         font-size: 0.9em;
         font-family: sans-serif;
-        min-width: 400px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        table-layout: fixed;
     }
 
     .styled-table thead tr {
@@ -31,11 +31,24 @@
     .styled-table tbody tr:last-of-type {
         border-bottom: 2px solid #009879;
     }
+
+    .styled-table th:nth-child(1) {
+        width: 10em;
+    }
+
+    .styled-table th:nth-child(2) {
+        width: 20em;
+    }
+
+    .styled-table th:nth-child(3) {
+        width: 10em;
+    }
 </style>
 </head>
 <body>
 
 </body>
+<h1 id='title-text'>Help for ThruText More Keyboard Shortcuts</h1>
 <table class="styled-table">
     <thead>
         <tr>
@@ -54,6 +67,41 @@
             <td>CTRL-R</td>
             <td>Replies Tab</td>
             <td>Numbers</td>
+        </tr>
+        <tr>
+            <td>CTRL-SHIFT-R</td>
+            <td>Replies Tab, My Replies</td>
+            <td>Numbers</td>
+        </tr>
+        <tr>
+            <td>CTRL-O</td>
+            <td>Opt Out</td>
+            <td>Dialog Shortcuts</td>
+        </tr>
+        <tr>
+            <td>CTRL-A</td>
+            <td>Archive</td>
+            <td>Dialog Shortcuts</td>
+        </tr>
+        <tr>
+            <td>CTRL-C</td>
+            <td>First Conversation</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>CTRL-SHIFT-C</td>
+            <td>Last Conversation</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>CTRL-ENTER</td>
+            <td>Focus Message & Confirm Recipient</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>CTRL-H</td>
+            <td>Show Help</td>
+            <td>-</td>
         </tr>
     </tbody>
 </table>
@@ -75,6 +123,49 @@
             <td>Choose numbered item,<br>while holding CTRL</td>
         </tr>
 
+    </tbody>
+</table>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Dialog Shortcuts</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>CTRL-Y</td>
+            <td>Yes (Accept Dialog)</td>
+        </tr>
+        <tr>
+            <td>CTRL-N / ESC</td>
+            <td>No (Cancel Dialog)</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>About</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan='3'>ThruText Extra Shortcuts Created by Scott Gifford <sgifford@suspectclass.com></td>
+        </tr>
+        <tr>
+            <td colspan='3'><a href="https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts">
+                https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts
+            </a></td>
+        </tr>
+        <tr>
+            <td colspan='3' id='version'>Version x.y</td>
+        </tr>
     </tbody>
 </table>
 
