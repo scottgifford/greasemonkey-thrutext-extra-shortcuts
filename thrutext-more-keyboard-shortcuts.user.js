@@ -3,6 +3,7 @@
 // @namespace    http://suspectclass.com/
 // @version      0.4
 // @resource helpScreenshot https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png
+// @resource helpHtml https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.html
 // @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
 // @match        *://*.textforvictory2020.com/*
