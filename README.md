@@ -11,7 +11,10 @@ Greasemonkey script for extra keyboard shortcuts in ThruText.
    * If the script is already installed and you'd like to re-install the same version, press the "Reinstall" button.
 
 # Help
-![Help Screenshot](https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png)
+[Help for thrutext-more-keyboard-shortcuts](http://htmlpreview.github.io/?https://raw.githubusercontent.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/master/help.html)
+
+# Changes
+[History of thrutext-more-keyboard-shortcuts](https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/commits/master)
 
 # About
 Created by Scott Gifford.
