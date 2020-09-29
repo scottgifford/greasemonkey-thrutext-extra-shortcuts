@@ -2,7 +2,6 @@
 // @name         ThruText More Keyboard Shortcuts
 // @namespace    http://suspectclass.com/
 // @version      0.5
-// @resource helpScreenshot https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.png
 // @resource helpHtml https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.html
 // @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
@@ -67,14 +66,17 @@
             switch(e.code) {
                 // Global Keys
                 case "KeyH": {
-                    console.log(`Showing help screen`);
-                    const helpImage = GM_getResourceURL("helpScreenshot");
+                    console.log('Showing help screen');
+                    const helpHtmlDataUrl = GM_getResourceURL("helpHtml");
+                    const helpHtmlDataBase64 = helpHtmlDataUrl.split(',',2)[1];
+                    const helpHtml = atob(helpHtmlDataBase64);
+
                     const w = window.open("", "greasemonkey-thrutext-extra-shortcuts-help");
                     w.document.title = `Help for ${GM_info.script.name} version ${GM_info.script.version}`;
+                    w.document.body.innerHTML = helpHtml;
+                    w.document.querySelector('#title-text').innerText = `Help for ${GM_info.script.name}`;
+                    w.document.querySelector('#version').innerText = GM_info.script.version;
 
-                    const img = window.document.createElement('img');
-                    img.src = helpImage;
-                    w.document.body.appendChild(img);
                     break;
                 }
                 case "KeyS":
