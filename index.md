@@ -1,3 +1,7 @@
+---
+image: LogoMakr_2u5XSE.png
+---
+
 # Introduction
 Greasemonkey script for extra keyboard shortcuts in ThruText.
 
