@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ThruText More Keyboard Shortcuts
 // @namespace    http://suspectclass.com/
-// @version      0.6
+// @version      0.7
 // @resource helpHtml https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.html
 // @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
@@ -59,10 +59,14 @@
     // Distinguishes between the main question block and the "My Replies" question block.
     let menuElementSelector = undefined;
 
+    // Track if CTRL key is down, to support external keypads when CTRL is pressed on the main keyboard.
+    let ctrlKeyDown = false;
+
     function doc_keyDown(e) {
         console.log("Key Down Event:", e);
-        if (e.ctrlKey) {
+        if (e.ctrlKey || (ctrlKeyDown && e.code.startsWith('Numpad'))) {
             let preventDefault = true;
+            ctrlKeyDown = true;
             switch(e.code) {
                 // Global Keys
                 case "KeyH": {
@@ -271,6 +275,8 @@
             case "ControlLeft":
             case "ControlRight":
                 console.log("Released CTRL-key, removing sub-menus");
+                ctrlKeyDown = false;
+
                 if (inSurveyQuestion) {
                     console.log("Released CTRL-key, should un-decorate");
                     unDecorateItems('.v2-form__radio-option,.v2-form__checkbox-option,.v2-form__text-input', (elt) => {
