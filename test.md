@@ -1,6 +1,7 @@
 ---
 image: LogoMakr_2u5XSE.png
 driveId: 1xx49r910q2Th8H2u97tZhSedzPB5CU1s/preview
+---
 
 # Introduction
 Greasemonkey script for extra keyboard shortcuts in ThruText.
