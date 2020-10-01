@@ -1,4 +1,5 @@
 ---
+driveId: 1uAMUU4hkFLw6iWfAUQQk3jt7CuDmlYoR/preview
 image: LogoMakr_2u5XSE.png
 ---
 
@@ -17,6 +18,9 @@ Greasemonkey script for extra keyboard shortcuts in ThruText.
 
 # Help
 [Help for thrutext-more-keyboard-shortcuts](http://htmlpreview.github.io/?https://raw.githubusercontent.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/master/help.html)
+
+# Demo and Installation Video
+{% include googleDrivePlayer.html id=page.driveId %}
 
 # Changes
 [History of thrutext-more-keyboard-shortcuts](https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/commits/master)
