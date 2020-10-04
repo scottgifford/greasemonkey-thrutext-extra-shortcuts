@@ -56,10 +56,10 @@
     let isModifierKeyDown = false;
 
     // Check if the modifier key was down during the given event
-    const isEventWithModifierKey = (e) => e.ctrlKey;
+    const isEventWithModifierKey = (e) => e.metaKey;
 
     // Check if the given event is the one for the modifier key itself being pressed or released
-    const isEventForModifierKey = (e) => e.key === "Control";
+    const isEventForModifierKey = (e) => e.key === "Meta";
 
     // Survey question DOM element that is active, or undefined if none
     let inSurveyQuestion = undefined;
