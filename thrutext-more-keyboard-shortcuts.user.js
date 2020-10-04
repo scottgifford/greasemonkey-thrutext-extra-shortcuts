@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ThruText More Keyboard Shortcuts
 // @namespace    http://suspectclass.com/
-// @version      0.8
+// @version      0.8meta
 // @resource helpHtml https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.html
 // @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
