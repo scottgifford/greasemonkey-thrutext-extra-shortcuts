@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ThruText More Keyboard Shortcuts
 // @namespace    http://suspectclass.com/
-// @version      0.7
+// @version      0.8
 // @resource helpHtml https://github.com/scottgifford/greasemonkey-thrutext-extra-shortcuts/raw/master/help.html
 // @description  Add extra keyboard shortcuts for ThruText
 // @author       Scott Gifford <sgifford@suspectclass.com>
@@ -24,7 +24,7 @@
         root.querySelectorAll(sel)
             .forEach((elt, i) => {
               if (i < 10) {
-                  console.log(`Decorating element ${i}:`, elt);
+                  console.log(`Decoratfing element ${i}:`, elt);
                   if (!elt.alreadyDecorated) {
                       elt.alreadyDecorated = true;
                       // 1-based numbering
@@ -52,6 +52,15 @@
         });
     };
 
+    // Track if modifier key is down, to support external keypads when modifier key is pressed on the main keyboard.
+    let isModifierKeyDown = false;
+
+    // Check if the modifier key was down during the given event
+    const isEventWithModifierKey = (e) => e.ctrlKey;
+
+    // Check if the given event is the one for the modifier key itself being pressed or released
+    const isEventForModifierKey = (e) => e.key === "Control";
+
     // Survey question DOM element that is active, or undefined if none
     let inSurveyQuestion = undefined;
 
@@ -59,14 +68,12 @@
     // Distinguishes between the main question block and the "My Replies" question block.
     let menuElementSelector = undefined;
 
-    // Track if CTRL key is down, to support external keypads when CTRL is pressed on the main keyboard.
-    let ctrlKeyDown = false;
 
     function doc_keyDown(e) {
         console.log("Key Down Event:", e);
-        if (e.ctrlKey || (ctrlKeyDown && e.code.startsWith('Numpad'))) {
+        if (isEventWithModifierKey(e) || (isModifierKeyDown && e.code.startsWith('Numpad'))) {
             let preventDefault = true;
-            ctrlKeyDown = true;
+            isModifierKeyDown = true;
             switch(e.code) {
                 // Global Keys
                 case "KeyH": {
@@ -271,23 +278,20 @@
 
     function doc_keyUp(e) {
         console.log("Key Up Event:", e);
-        switch(e.code) {
-            case "ControlLeft":
-            case "ControlRight":
-                console.log("Released CTRL-key, removing sub-menus");
-                ctrlKeyDown = false;
+        if (isEventForModifierKey(e)) {
+            console.log("Released modifier key, removing sub-menus");
+            isModifierKeyDown = false;
 
-                if (inSurveyQuestion) {
-                    console.log("Released CTRL-key, should un-decorate");
-                    unDecorateItems('.v2-form__radio-option,.v2-form__checkbox-option,.v2-form__text-input', (elt) => {
-                        const decoratorElt = elt.querySelector('.tt-kb-decorator');
-                        if (decoratorElt) {
-                            decoratorElt.remove();
-                        }
-                    });
-                    inSurveyQuestion = undefined;
-                }
-                break;
+            if (inSurveyQuestion) {
+                console.log("Released modifier key, should un-decorate");
+                unDecorateItems('.v2-form__radio-option,.v2-form__checkbox-option,.v2-form__text-input', (elt) => {
+                    const decoratorElt = elt.querySelector('.tt-kb-decorator');
+                    if (decoratorElt) {
+                        decoratorElt.remove();
+                    }
+                });
+                inSurveyQuestion = undefined;
+            }
         }
     }
 
